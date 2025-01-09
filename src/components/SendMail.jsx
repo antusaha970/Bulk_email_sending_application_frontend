@@ -1,21 +1,39 @@
-import { useForm } from "react-hook-form";
+import { get, useForm } from "react-hook-form";
 import client from "../client";
 import { EmailAddressContext } from "../context";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const SendMail = () => {
   const { register, handleSubmit, reset } = useForm();
   const [mail_address, setMail_address] = useContext(EmailAddressContext);
+  const [allConfigurations, setAllConfigurations] = useState([]);
+
+  useEffect(() => {
+    const getAllConfigurations = async () => {
+      try {
+        const response = await client.get("configurations/");
+        setAllConfigurations(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    getAllConfigurations();
+  }, []);
+
   const onSubmit = async (data) => {
     data["email_addresses"] = mail_address;
-    data["configuration"] = 25;
+    // data["configuration"] = 25;
+    if (data["config"] == "none") {
+      alert("Please select a configuration");
+      return;
+    }
     const formData = new FormData();
     formData.append("subject", data["subject"]);
     formData.append("body", data["body"]);
     for (const email_address of mail_address) {
       formData.append("email_addresses", email_address);
     }
-    formData.append("configuration", data["configuration"]);
+    formData.append("configuration", parseInt(data["config"]));
     // Properly append attachments
     if (data["attachments"] && data["attachments"].length > 0) {
       for (let i = 0; i < data["attachments"].length; i++) {
@@ -83,6 +101,27 @@ const SendMail = () => {
             {...register("attachments")}
             multiple
           />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="config" className="form-label">
+            Select configuration
+          </label>
+          <select
+            className="form-select"
+            aria-label="select configurations"
+            id="config"
+            {...register("config")}
+            required
+          >
+            <option selected value="none">
+              select configs
+            </option>
+            {allConfigurations?.map((config, idx) => (
+              <option value={config.id} key={idx}>
+                {config.username}
+              </option>
+            ))}
+          </select>
         </div>
         <button type="submit" className="btn btn-primary w-100">
           Submit
