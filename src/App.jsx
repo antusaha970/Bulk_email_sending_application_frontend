@@ -5,6 +5,7 @@ import SetConfigForm from "./components/SetConfigForm";
 import AddMails from "./components/AddMails";
 import { useState } from "react";
 import { EmailAddressContext } from "./context";
+import SendMail from "./components/SendMail";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/set_config" element={<SetConfigForm />}></Route>
         <Route path="/add_mails" element={<AddMails />}></Route>
+        <Route path="/send_mails" element={<SendMail />}></Route>
       </Routes>
     </EmailAddressContext.Provider>
   );
