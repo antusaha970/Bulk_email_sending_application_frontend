@@ -1,0 +1,26 @@
+.btn-success-custom {
+    background-color: #28a745;
+    color: white;
+    border: none;
+}
+.btn-success-custom:hover {
+    background-color: #218838;
+}
+
+.btn-danger-custom {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+}
+.btn-danger-custom:hover {
+    background-color: #c82333;
+}
+
+.btn-info-custom {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+}
+.btn-info-custom:hover {
+    background-color: #138496;
+}
