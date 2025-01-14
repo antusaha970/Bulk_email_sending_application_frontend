@@ -7,6 +7,7 @@ import { useState } from "react";
 import { EmailAddressContext } from "./context";
 import SendMail from "./components/SendMail";
 import ViewMails from "./components/ViewMails";
+import SpecificMail from "./components/SpecificMail";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -19,6 +20,7 @@ function App() {
         <Route path="/add_mails" element={<AddMails />}></Route>
         <Route path="/send_mails" element={<SendMail />}></Route>
         <Route path="/view_mails" element={<ViewMails />}></Route>
+        <Route path="/view_mails/:id" element={<SpecificMail />} />
       </Routes>
     </EmailAddressContext.Provider>
   );

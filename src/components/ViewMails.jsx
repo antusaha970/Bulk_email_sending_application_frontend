@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import client from "../client";
+import { Link } from "react-router-dom";
 
 const ViewMails = () => {
   const [allMails, setAllMails] = useState([]);
@@ -36,7 +37,9 @@ const ViewMails = () => {
                 <td>{mail.id}</td>
                 <td>{mail.subject}</td>
                 <td>
-                  <button className="btn btn-info">View mail</button>
+                  <Link to={`/view_mails/${mail.id}`}>
+                    <button className="btn btn-info">View mail</button>
+                  </Link>
                 </td>
               </tr>
             ))}
