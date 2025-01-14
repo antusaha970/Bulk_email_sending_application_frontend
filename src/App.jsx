@@ -8,6 +8,7 @@ import { EmailAddressContext } from "./context";
 import SendMail from "./components/SendMail";
 import ViewMails from "./components/ViewMails";
 import SpecificMail from "./components/SpecificMail";
+import Home from "./components/Home";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -16,6 +17,7 @@ function App() {
     <EmailAddressContext.Provider value={[mail_address, setMail_address]}>
       <Navbar></Navbar>
       <Routes>
+        <Route path="/" element={<Home />}></Route>
         <Route path="/set_config" element={<SetConfigForm />}></Route>
         <Route path="/add_mails" element={<AddMails />}></Route>
         <Route path="/send_mails" element={<SendMail />}></Route>
