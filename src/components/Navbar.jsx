@@ -40,9 +40,9 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                View mail
-              </a>
+              <NavLink className="nav-link" to={"/view_mails"}>
+                View mails
+              </NavLink>
             </li>
           </ul>
         </div>
