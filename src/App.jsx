@@ -11,6 +11,7 @@ import SpecificMail from "./components/SpecificMail";
 import Home from "./components/Home";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -24,11 +25,46 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/set_config" element={<SetConfigForm />}></Route>
-          <Route path="/add_mails" element={<AddMails />}></Route>
-          <Route path="/send_mails" element={<SendMail />}></Route>
-          <Route path="/view_mails" element={<ViewMails />}></Route>
-          <Route path="/view_mails/:id" element={<SpecificMail />} />
+          <Route
+            path="/set_config"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <SetConfigForm />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/add_mails"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <AddMails />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/send_mails"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <SendMail />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/view_mails"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <ViewMails />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route
+            path="/view_mails/:id"
+            element={
+              <PrivateRoute isLoggedIn={isLoggedIn}>
+                <SpecificMail />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </EmailAddressContext.Provider>
     </LoginContext.Provider>
