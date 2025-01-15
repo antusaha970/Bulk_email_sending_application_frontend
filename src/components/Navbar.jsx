@@ -1,9 +1,18 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { LoginContext } from "../context";
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useContext(LoginContext);
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem("token");
+  };
+
   return (
     <nav className="navbar navbar-expand-lg ">
-      <div className="container-fluid">
+      <div className="container">
         <Link to={"/"} className="navbar-brand">
           Bulk mail sender
         </Link>
@@ -21,42 +30,61 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink to={"/login"} className="nav-link" aria-current="page">
-                Login
-              </NavLink>
+              {!isLoggedIn && (
+                <NavLink to={"/login"} className="nav-link" aria-current="page">
+                  Login
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
-              <NavLink
-                to={"/register"}
-                className="nav-link"
-                aria-current="page"
-              >
-                Register
-              </NavLink>
+              {!isLoggedIn && (
+                <NavLink
+                  to={"/register"}
+                  className="nav-link"
+                  aria-current="page"
+                >
+                  Register
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
-              <NavLink
-                to={"/set_config"}
-                className="nav-link"
-                aria-current="page"
-              >
-                Set Config
-              </NavLink>
+              {isLoggedIn && (
+                <NavLink
+                  to={"/set_config"}
+                  className="nav-link"
+                  aria-current="page"
+                >
+                  Set Config
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
-              <NavLink to={"/add_mails"} className="nav-link">
-                Add Mail
-              </NavLink>
+              {isLoggedIn && (
+                <NavLink to={"/add_mails"} className="nav-link">
+                  Add Mail
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
-              <NavLink to={"/send_mails"} className="nav-link">
-                Send mail
-              </NavLink>
+              {isLoggedIn && (
+                <NavLink to={"/send_mails"} className="nav-link">
+                  Send mail
+                </NavLink>
+              )}
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to={"/view_mails"}>
-                View mails
-              </NavLink>
+              {isLoggedIn && (
+                <NavLink className="nav-link" to={"/view_mails"}>
+                  View mails
+                </NavLink>
+              )}
+            </li>
+            <li className="nav-item">
+              {isLoggedIn && (
+                <button className="nav-link" onClick={handleLogout}>
+                  Logout
+                </button>
+              )}
             </li>
           </ul>
         </div>

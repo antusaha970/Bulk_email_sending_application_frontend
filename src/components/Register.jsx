@@ -1,9 +1,12 @@
 import { useForm } from "react-hook-form";
 import client from "../client";
 import { useNavigate, useNavigation } from "react-router-dom";
+import { LoginContext } from "../context";
+import { useContext } from "react";
 
 const Register = () => {
   const { register, handleSubmit } = useForm();
+  const [, setIsLoggedIn] = useContext(LoginContext);
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
@@ -11,6 +14,7 @@ const Register = () => {
       alert("Registration successful");
       if (response.status == 200) {
         localStorage.setItem("token", response.data.token);
+        setIsLoggedIn(true);
         navigate("/");
       }
     } catch (error) {
