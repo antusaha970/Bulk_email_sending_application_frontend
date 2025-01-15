@@ -9,6 +9,8 @@ import SendMail from "./components/SendMail";
 import ViewMails from "./components/ViewMails";
 import SpecificMail from "./components/SpecificMail";
 import Home from "./components/Home";
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -18,6 +20,8 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/register" element={<Register />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/set_config" element={<SetConfigForm />}></Route>
         <Route path="/add_mails" element={<AddMails />}></Route>
         <Route path="/send_mails" element={<SendMail />}></Route>
