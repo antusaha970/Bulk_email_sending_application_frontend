@@ -27,7 +27,7 @@ const SetConfigForm = () => {
         >
           <div className="mb-3">
             <label htmlFor="subject" className="form-label">
-              Username*
+              Mail Username*
             </label>
             <input
               type="text"
@@ -40,7 +40,7 @@ const SetConfigForm = () => {
           </div>
           <div className="mb-3">
             <label htmlFor="subject" className="form-label">
-              Password*
+              Mail Password*
             </label>
             <input
               type="text"

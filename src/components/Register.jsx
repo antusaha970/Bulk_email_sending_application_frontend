@@ -13,7 +13,7 @@ const Register = () => {
       const response = await client.post("/account/register/", data);
       alert("Registration successful");
       if (response.status == 200) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         setIsLoggedIn(true);
         navigate("/");
       }
@@ -38,7 +38,7 @@ const Register = () => {
               type="text"
               className="form-control"
               id="subject"
-              placeholder="Enter the subject"
+              placeholder="Enter username"
               required
               {...register("username")}
             />
@@ -51,7 +51,7 @@ const Register = () => {
               type="password"
               className="form-control"
               id="subject"
-              placeholder="Enter the subject"
+              placeholder="Enter password"
               required
               {...register("password")}
             />

@@ -13,7 +13,7 @@ const Login = () => {
       const response = await client.post("account/login/", data);
       alert("Login successful");
       if (response.status == 200) {
-        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("token", JSON.stringify(response.data.token));
         setIsLoggedIn(true);
         navigate("/");
       }
@@ -38,7 +38,7 @@ const Login = () => {
               type="text"
               className="form-control"
               id="subject"
-              placeholder="Enter the subject"
+              placeholder="Enter username"
               required
               {...register("username")}
             />
@@ -51,7 +51,7 @@ const Login = () => {
               type="password"
               className="form-control"
               id="subject"
-              placeholder="Enter the subject"
+              placeholder="Enter password"
               required
               {...register("password")}
             />
