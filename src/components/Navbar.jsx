@@ -47,38 +47,99 @@ const Navbar = () => {
                 </NavLink>
               )}
             </li>
-            <li className="nav-item">
-              {isLoggedIn && (
-                <NavLink
-                  to={"/set_config"}
-                  className="nav-link"
-                  aria-current="page"
+            {isLoggedIn && (
+              <li className="nav-item dropdown">
+                <p
+                  className="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
                 >
-                  Set Config
-                </NavLink>
-              )}
-            </li>
-            <li className="nav-item">
-              {isLoggedIn && (
-                <NavLink to={"/add_mails"} className="nav-link">
-                  Add Mail
-                </NavLink>
-              )}
-            </li>
-            <li className="nav-item">
-              {isLoggedIn && (
-                <NavLink to={"/send_mails"} className="nav-link">
-                  Send mail
-                </NavLink>
-              )}
-            </li>
-            <li className="nav-item">
-              {isLoggedIn && (
-                <NavLink className="nav-link" to={"/view_mails"}>
-                  View mails
-                </NavLink>
-              )}
-            </li>
+                  Mail setting
+                </p>
+                <ul className="dropdown-menu">
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink
+                        to={"/set_config"}
+                        className="nav-link"
+                        aria-current="page"
+                      >
+                        Set Config for mail
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink to={"/add_mails"} className="nav-link">
+                        Add Mail
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink to={"/send_mails"} className="nav-link">
+                        Send mail
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink className="nav-link" to={"/view_mails"}>
+                        View mails
+                      </NavLink>
+                    )}
+                  </li>
+                </ul>
+              </li>
+            )}
+            {isLoggedIn && (
+              <li className="nav-item dropdown">
+                <p
+                  className="nav-link dropdown-toggle"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  SMS setting
+                </p>
+                <ul className="dropdown-menu">
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink
+                        to={"/set_config_for_sms"}
+                        className="nav-link"
+                        aria-current="page"
+                      >
+                        Set Config for sms
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink to={"/add_number"} className="nav-link">
+                        Add Number
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink to={"/send_mails"} className="nav-link">
+                        Send mail
+                      </NavLink>
+                    )}
+                  </li>
+                  <li className="nav-item">
+                    {isLoggedIn && (
+                      <NavLink className="nav-link" to={"/view_mails"}>
+                        View mails
+                      </NavLink>
+                    )}
+                  </li>
+                </ul>
+              </li>
+            )}
+
             <li className="nav-item">
               {isLoggedIn && (
                 <button className="nav-link" onClick={handleLogout}>
