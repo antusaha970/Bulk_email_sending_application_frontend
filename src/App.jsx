@@ -18,6 +18,7 @@ import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import SetConfigFormSMS from "./components/SetConfigFormSMS";
 import AddNumber from "./components/AddNumber";
+import SendSMS from "./components/SendSMS";
 
 function App() {
   const [mail_address, setMail_address] = useState([]);
@@ -86,6 +87,14 @@ function App() {
               element={
                 <PrivateRoute isLoggedIn={isLoggedIn}>
                   <AddNumber />
+                </PrivateRoute>
+              }
+            ></Route>
+            <Route
+              path="/send_sms"
+              element={
+                <PrivateRoute isLoggedIn={isLoggedIn}>
+                  <SendSMS />
                 </PrivateRoute>
               }
             ></Route>

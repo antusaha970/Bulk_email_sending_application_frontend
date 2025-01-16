@@ -124,15 +124,15 @@ const Navbar = () => {
                   </li>
                   <li className="nav-item">
                     {isLoggedIn && (
-                      <NavLink to={"/send_mails"} className="nav-link">
-                        Send mail
+                      <NavLink to={"/send_sms"} className="nav-link">
+                        Send SMS
                       </NavLink>
                     )}
                   </li>
                   <li className="nav-item">
                     {isLoggedIn && (
                       <NavLink className="nav-link" to={"/view_mails"}>
-                        View mails
+                        View SMS composes
                       </NavLink>
                     )}
                   </li>
