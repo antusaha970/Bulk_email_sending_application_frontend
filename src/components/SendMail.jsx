@@ -19,6 +19,7 @@ const SendMail = () => {
     };
     getAllConfigurations();
   }, []);
+  console.log(allConfigurations);
 
   const onSubmit = async (data) => {
     data["email_addresses"] = mail_address;
@@ -118,7 +119,7 @@ const SendMail = () => {
             </option>
             {allConfigurations?.map((config, idx) => (
               <option value={config.id} key={idx}>
-                {config.username}
+                {config.name}
               </option>
             ))}
           </select>
