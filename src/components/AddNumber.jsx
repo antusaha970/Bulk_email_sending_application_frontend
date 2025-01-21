@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { PhoneNumberContext } from "../context";
 import { useForm } from "react-hook-form";
+import client from "../client";
 
 const AddNumber = () => {
   const [phone_number, setPhone_number] = useContext(PhoneNumberContext);
@@ -14,7 +15,30 @@ const AddNumber = () => {
     setPhone_number([]);
   };
 
-  console.log(phone_number);
+  const handleExcelFileUpload = async (data) => {
+    try {
+      const formData = new FormData();
+      formData.append("file", data["file"][0]);
+      const response = await client.post(
+        "/bulk_sms/recipient_numbers_list/",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      if (response.status == 200) {
+        const data = response?.data?.data;
+        setPhone_number((prevState) => [...prevState, ...data]);
+        alert("number added successfully");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("something went wrong");
+    }
+  };
+
   return (
     <>
       <div className="container mt-5">
@@ -48,7 +72,10 @@ const AddNumber = () => {
             </button>
           </div>
         </form>
-        <form className="mx-auto shadow p-4 rounded bg-white w-75 border-top border-4 border-success my-3">
+        <form
+          className="mx-auto shadow p-4 rounded bg-white w-75 border-top border-4 border-success my-3"
+          onSubmit={handleSubmit(handleExcelFileUpload)}
+        >
           <h4 className="text-center">Upload excel file</h4>
           <div className="input-group mb-3">
             <input
@@ -57,6 +84,7 @@ const AddNumber = () => {
               placeholder="Recipient's email address"
               aria-describedby="button-addon2"
               required
+              {...register("file")}
             />
             <button
               className="btn btn-success"

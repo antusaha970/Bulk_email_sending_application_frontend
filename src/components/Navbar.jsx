@@ -131,7 +131,7 @@ const Navbar = () => {
                   </li>
                   <li className="nav-item">
                     {isLoggedIn && (
-                      <NavLink className="nav-link" to={"/view_mails"}>
+                      <NavLink className="nav-link" to={"/view_sms"}>
                         View SMS composes
                       </NavLink>
                     )}
