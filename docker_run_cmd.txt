@@ -1,3 +1,7 @@
 docker-compose up --build
 
 Access page at: http://localhost:4173/
+
+Dummy account 
+user: antu
+password: Pa$$w0rd!
