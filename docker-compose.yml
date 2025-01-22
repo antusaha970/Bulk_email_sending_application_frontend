@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  web_frontend:
+    build:
+      context: .
+      dockerfile: "docker/Dockerfile"
+    ports:
+      - "4173:4173"
+
+
+
+
+
+
